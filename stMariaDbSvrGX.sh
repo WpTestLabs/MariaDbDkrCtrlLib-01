@@ -2,6 +2,7 @@
 #    $KnRootHP/srv/stMariaDbSvrGX.sh 
 #    stMariaDbSvrGX.sh -- GX: at start of Docker run for the kan
 set -e
+. /srv/guestEnv.sh
 #msg () { echo \$1;  echo \$1 > $MsgPipeGP; }
 echo "Starting (in Kan) stMariaDbSrv.sh" 
 echo ">>> \`date\` - Start: stMariaDbSrv.sh  In Guest Path: \`pwd\`"
