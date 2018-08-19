@@ -13,7 +13,7 @@ ln -sf /run /var/run
 if [ ! -d $DbDataGP/mysql ] ; then
 	echo ">> No Database Found -- Preparing to init new DB <<"
 	if [ -f $SrvGP/customInitDb.sh ] ; then
-		. $SrvGP/customInitDb.sh     2>&1 | tee -a   $SrvGP/customInitDb.log
+		. $SrvGP/customInitDbGX.sh     2>&1 | tee -a   $SrvGP/customInitDbGX.log
 	else
 		echo ">> No customInitDb.sh found, so using: standardInitDbGX.sh <<"
 		. $SrvGP/standardInitDbGX.sh   2>&1 | tee -a $SrvGP/standardInitDb.log
