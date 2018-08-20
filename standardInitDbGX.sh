@@ -17,6 +17,7 @@ EOF
 
 #msg "[MariaDB] Starting: standardInitDb.sh - as: \`whoami\`  pwd: \$PWD"
 cat >/root/.my.cnf <<<!include /srv/.myRtPW.cnf
+chown $MdbUsr:$MdbGrp /root/.my.cnf && chmod 440 /root/.my.cnf
 		#gg cat /srv/.myRtPW.cnf
 echo ">>>>>> my.cnf vvv"; cat $SrvGP/my.cnf
 
