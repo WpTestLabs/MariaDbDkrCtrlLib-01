@@ -9,8 +9,10 @@ export SrvGP=/srv
 export DbDataGP=$SrvGP/DataDir
 export RunGP=$SrvGP/run
 
-export MdbGrp=mysql
-export MdbUsr=mysql
+#export MdbGrp=mysql  <<< @@@ can't pickup /root/.my.cnf !!!
+#export MdbUsr=mysql
+export MdbGrp=root
+export MdbUsr=root
 EOF
 }
 if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
