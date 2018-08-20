@@ -2,11 +2,11 @@
 #    $SrvGP/standardInitDb.sh -- cmd run (in the container) iff start script see's no existing DB 
 #set -e			Run in Guest, iff db data store file not found ie db !initialized
 #msg () {  echo \$1;  echo \$1 > $MsgPipeGP; }
-ping () { echo ">>>>>>>> mysql ping: \`mysqladmin -uroot ping\`"; }
+ping () { echo ">>>>>>>> mysql ping: `mysqladmin -uroot ping`"; }
 pLkDnSQL () {
 cat <<EOF
 USE mysql;
-UPDATE user set password=PASSWORD("\`cat /srv/.msRoot.pwa\`") where User='root' AND Host = 'localhost';
+UPDATE user set password=PASSWORD("`cat /srv/.msRoot.pwa`") where User='root' AND Host = 'localhost';
 DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DROP DATABASE test;
@@ -41,6 +41,8 @@ mysqld_safe --defaults-extra-file=$SrvGP/my.cnf --skip-grant-tables --skip-netwo
 sleep 5
 echo ">>>>>>>> mysql ping vvvvvvvvv";  mysqladmin -uroot ping  
 ping						# #xx pLkDnSQL
+pLkDnSQL > /srv/pLkDnSQL.txt
+
 pLkDnSQL | mysql -u root
 
 #msg ">>>>>>>>>>>>>>> Back from DB Lock Down"
@@ -51,5 +53,6 @@ echo 'SELECT * FROM mysql.user;' | mysql -u root
 #msg "####################################################################################"
 #mysqld -v --help && mysqladmin -uroot  variables
 mysqladmin -uroot   status  shutdown   
+sleep 20
 #msg ">>>>>>>>>>>>>>>>  StandardInitDB.sh -- Exited mysqladmin, after giving shutdown cmd"
 #xx sleep 20;  ps -ef > $MsgPipeGP; 
