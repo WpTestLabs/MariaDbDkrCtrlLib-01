@@ -20,11 +20,11 @@ cat >/root/.my.cnf <<<!include /srv/.myRtPW.cnf
 		#gg cat /srv/.myRtPW.cnf
 echo ">>>>>> my.cnf vvv"; cat $SrvGP/my.cnf
 
-install -o $LnxUsr -g $LnxGrp -d -m 750 $DbDataGP
+install -o $MdbUsr -g $MdbGrp -d -m 750 $DbDataGP
 #ls / && 
 #tt mysql --version && echo
 		#??? vvvv mysql_install_db  --user=mysql --defaults-extra-file=$SrvGP/my.cnf
-mysql_install_db  --defaults-extra-file=$SrvGP/my.cnf  --user=$LnxUsr 
+mysql_install_db  --defaults-extra-file=$SrvGP/my.cnf  --user=$MdbUsr 
 #chown mysql:mysql /var/lib/mysql/ -R
 #chown $LnxUsr:$LnxGrp /var/lib/mysql/ -R
 
