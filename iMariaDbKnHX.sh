@@ -9,10 +9,10 @@ export SrvGP=/srv
 export DbDataGP=$SrvGP/DataDir
 export RunGP=$SrvGP/run
 
-#export MdbGrp=mysql  <<< @@@ can't pickup /root/.my.cnf !!!
-#export MdbUsr=mysql
-export MdbGrp=root
-export MdbUsr=root
+export MdbGrp=mysql       # ?? <<< @@@ can't pickup /root/.my.cnf !!!
+export MdbUsr=mysql
+#export MdbGrp=root
+#export MdbUsr=root
 EOF
 }
 if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
@@ -34,7 +34,7 @@ cat >$KnSrvHP/.myRtPW.cnf  <<EOF
 [client]
 password=`cat $MySqlRtPwHPFN`
 EOF
-	chown root:root $KnSrvHP/.myRtPW.cnf && chmod 400 $KnSrvHP/.myRtPW.cnf
+	chown $MdbUsr:$MdbGrp $KnSrvHP/.myRtPW.cnf && chmod 400 $KnSrvHP/.myRtPW.cnf
 } #----
 if [[ ! -e $MySqlRtPwHPFN ]]; then  	mkMsRtPW; 	fi
 cat >$KnSrvHP/my.cnf   <<EOF
