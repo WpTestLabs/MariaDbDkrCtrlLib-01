@@ -7,7 +7,7 @@ set -e
 echo "Starting (in Kan) stMariaDbSrv.sh" 
 echo ">>> \`date\` - Start: stMariaDbSrv.sh  In Guest Path: \`pwd\`"
 ls -R /srv && pwd
-install -o $LnxUsr -g $LnxGrp -d -m 755 /run/mysqld
+install -o $MdbUsr -g $MdbGrp -d -m 755 /run/mysqld
 ln -sf /run /var/run
 
 if [ ! -d $DbDataGP/mysql ] ; then
@@ -25,4 +25,4 @@ fi
 #msg ">> Starting MariaDB Service (this is final mesg) <<"
 #  @@@ w/ "include in /etc/my.cnf,  --defaults-extra-file should not be needed!
 # vvv defaults-extra has No Host Resolve !!
-exec su-exec $LnxUsr mysqld --defaults-extra-file=$SrvGP/my.cnf
+exec su-exec $MdbUsr mysqld --defaults-extra-file=$SrvGP/my.cnf
