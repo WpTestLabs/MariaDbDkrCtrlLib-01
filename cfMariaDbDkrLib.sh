@@ -29,7 +29,7 @@ DoSqlFile () {	echo "  DoSqlFile() - PFN: $1 -- `basename $1`"
 	if [[ -e $pfn ]]; then
 		echo "  vvvv  Found file  vvvv";  cat $pfn;
 		cp -p $pfn $qInHP;  						ls -al $qInHP;  cat $qInHP/$baseN
-		docker exec -t $CID mysql -uroot -e "source /srv/Q/In/$baseN;";
+		docker exec  $CID mysql -uroot -e "source /srv/Q/In/$baseN;";
 
 		rm $qInHP/$baseN;							ls -al $qInHP;
 	else
