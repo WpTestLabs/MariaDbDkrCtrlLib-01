@@ -1,5 +1,5 @@
 #!/bin/sh
-#   echo "https://github.com/WpTestLabs/MariaDbDkrCtrlLib-01/install-o1.sh"
+#   echo "https://github.com/WpTestLabs/MariaDbDkrCtrlLib-01/install-01.sh"
 
 install -pm 640 -o root -g root -t $SrvLib cfMariaDbDkrLib.sh  iMariaDbKnHX.sh 
 install -pm 740 -o root -g root -t $SrvBin nMariaDbKn.sh nMariaDbKnDef.sh
