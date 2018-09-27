@@ -37,4 +37,19 @@ DoSqlFile () {	echo "  DoSqlFile() - PFN: $1 -- `basename $1`"
 	fi 
 }
 
+DoShFile () {	echo "  DoShFile() - PFN: $1 -- `basename $1`"
+	local hpfn=$1  baseN=`basename $1;`;  shift;
+	local knSrvTmpGP=/srv/tmp
+	local knSrvTmpHP=$KnBasHP/$knSrvTmpGP;		mkdir -p $knSrvTmpHP;
+	if [[ -e $hpfn ]]; then
+		echo "  vvvv  Found file  vvvv";  cat $hpfn;
+		cp -p $hpfn $knSrvTmpHP;  		ls -al $knSrvTmpHP;  cat $knSrvTmpHP/$baseN
+		docker exec  $CID $knSrvTmpGP/$baseN;";
+
+		rm $knSrvTmpHP/$baseN;			ls -al $knSrvTmpHP;
+	else
+		echo "  *** sh File Missing - $hpfn ***"
+	fi 
+}
+
 doCli $@
