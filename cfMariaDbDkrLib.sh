@@ -44,7 +44,7 @@ DoShFile () {	echo "  DoShFile() - PFN: $1 -- `basename $1`"
 	if [[ -e $hpfn ]]; then
 		echo "  vvvv  Found file  vvvv";  cat $hpfn;
 		cp -p $hpfn $knSrvTmpHP;  		ls -al $knSrvTmpHP;  cat $knSrvTmpHP/$baseN
-		docker exec  $CID $knSrvTmpGP/$baseN $@;";
+		docker exec  $CID $knSrvTmpGP/$baseN $@;
 
 		rm $knSrvTmpHP/$baseN;			ls -al $knSrvTmpHP;
 	else
