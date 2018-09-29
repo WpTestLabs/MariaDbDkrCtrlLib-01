@@ -8,7 +8,7 @@ export KnBasHP=$SrvKnz/$KnN  #@@ ?? What if SQL on baremetal, or in (Multi Kn) c
 export myDbN=NgxMainDfltHst__vvDB  # @@ $1
 
 # -- GX Pln --
-export SqlDmpGstBP=/srv/Out/dmp
+export SqlDmpGstBP=/srv/Out/dmp ;  mkdir -p $SqlDmpGstBP 
 
 # -- GX RT -- Respective HstPth's are: $KnBasHP/$myDmp__FQGPFN
 export myDmpFQGPFN=$SqlDmpGstBP/${myDbN}.sql
@@ -37,6 +37,6 @@ sMyDmpStsEnv 1
 mysqldump --add-drop-table $myDbN > $myDmpTmpFQGPFN 2> $myDmpLogFQGPFN; myDmpExitCode=$?
 sMyDmpStsEnv 2 $myDmpExitCode
 
-if [[ -z "$myDmpExitCode" ]]; then mv $myDmpTmpFQGPFN $myDmpFQGPFN; fi
+if [[ "0" == "$myDmpExitCode" ]]; then mv $myDmpTmpFQGPFN $myDmpFQGPFN; fi
 # @@ kick: Sql Dmp (result) ready (for next step in WkFlo) 
 echo "WkPrxySQL    EC: $myDmpExitCode  pfn: $myDmpFQGPFN"
