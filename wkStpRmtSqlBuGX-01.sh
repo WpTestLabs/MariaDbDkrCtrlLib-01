@@ -37,6 +37,6 @@ sMyDmpStsEnv 1
 mysqldump --add-drop-table $myDbN > $myDmpTmpFQGPFN 2> $myDmpLogFQGPFN; myDmpExitCode=$?
 sMyDmpStsEnv 2 $myDmpExitCode
 
-if [[ -z "$myDmpExitCode ]]; then mv $myDmpTmpFQGPFN $myDmpFQGPFN; fi
+if [[ -z "$myDmpExitCode" ]]; then mv $myDmpTmpFQGPFN $myDmpFQGPFN; fi
 # @@ kick: Sql Dmp (result) ready (for next step in WkFlo) 
 echo "WkPrxySQL    EC: $myDmpExitCode  pfn: $myDmpFQGPFN"
