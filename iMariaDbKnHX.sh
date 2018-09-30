@@ -8,6 +8,7 @@ cat >$KnBasHP/guestEnv.sh <<'EOF'
 export SrvGP=/srv
 export DbDataGP=$SrvGP/DataDir
 export RunGP=$SrvGP/run
+export RunWkFloGP=$RunGP/wkFlo
 
 export MdbGrp=mysql       # ?? <<< @@@ can't pickup /root/.my.cnf !!!
 export MdbUsr=mysql
@@ -21,7 +22,9 @@ if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
 # -- Host FSH ------------------------------------
 export KnSrvHP=$KnBasHP$SrvGP
 export MySqlRtPwHPFN=$KnSrvHP/.msRoot.pwa
-mkdir -p $KnBasHP/$DbDataGP;
+mkdir -p $KnBasHP/{$DbDataGP,$RunWkFloGP};
+  ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP
+  echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP 
 
 if [[ ! -e $KnSrvHP/guestEnv.sh ]]; then 
     mv $KnBasHP/guestEnv.sh $KnSrvHP;   
