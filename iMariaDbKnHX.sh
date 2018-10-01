@@ -23,8 +23,8 @@ if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
 export KnSrvHP=$KnBasHP$SrvGP
 export MySqlRtPwHPFN=$KnSrvHP/.msRoot.pwa
 mkdir -p $KnBasHP/{$DbDataGP,$RunWkFloGP};
-  ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP
-  echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP 
+  ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
+  echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
 
 if [[ ! -e $KnSrvHP/guestEnv.sh ]]; then 
     mv $KnBasHP/guestEnv.sh $KnSrvHP;   
