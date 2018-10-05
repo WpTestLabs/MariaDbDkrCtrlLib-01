@@ -1,11 +1,16 @@
 #!/bin/sh
 #	echo "wkStpRmtSqlBuGX-01.sh"; # for GX
 
+. /srv/guestEnv.sh
+msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
+
+
 # -- SQL Kn Host ENV --
 export KnBasHP=$SrvKnz/$KnN  #@@ ?? What if SQL on baremetal, or in (Multi Kn) common location?? 
 
 # -- Def --
 export myDbN=NgxMainDfltHst__vvDB  # @@ $1
+  msg "TL Start: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
 
 # -- GX Pln --
 export SqlDmpGstBP=/srv/Out/dmp ;  mkdir -p $SqlDmpGstBP 
@@ -40,3 +45,6 @@ sMyDmpStsEnv 2 $myDmpExitCode
 if [[ "0" == "$myDmpExitCode" ]]; then mv $myDmpTmpFQGPFN $myDmpFQGPFN; fi
 # @@ kick: Sql Dmp (result) ready (for next step in WkFlo) 
 echo "WkPrxySQL    EC: $myDmpExitCode  pfn: $myDmpFQGPFN"
+msg "TL WkPrxySQL   $myDmpExitCode  $KnBasHP$SqlDmpGstBP  $myDmpFQGPFN"
+msg "WkPrxySQL   $myDmpExitCode  $KnBasHP$SqlDmpGstBP  $myDmpFQGPFN"
+msg "TL End: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
