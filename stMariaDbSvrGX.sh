@@ -14,8 +14,10 @@ chkQ () {
 	fi
 }
 
+sqlPing () { mysqladmin ping; echo "   xc: $?"; }
+
 heartBeat () {	
-	while true;  do  msg "SqlHB `mysqladmin ping; echo "xc: $?; `" ; 
+	while true;  do  msg "SqlHB `sqlPing`" ; 
 		chkQ;  sleep 1 ;
 	done
 }
