@@ -52,4 +52,6 @@ DoShFile () {	echo "  DoShFile() - PFN: $1 -- `basename $1`"
 	fi 
 }
 
+gInQHP () { echo "$KnBasHP/srv/bat/inQ"; }
+
 doCli $@
