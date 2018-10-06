@@ -7,9 +7,16 @@ set -e
 msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
   msg "TL [SQL] Start: stMariaDbSvrGX.sh"
 
+chkQ () {
+	if [[ -n "$BatGP/inQ/*" ]]; then 
+	    msg "# [SQL] chkQ() - Found: `$BatGP/inQ/*`"
+	    mv $BatGP/inQ/* $BatGP/pending/
+	fi
+}
+
 heartBeat () {	
 	while true;  do  msg "SqlHB `mysqladmin ping; echo "xc: $?; `" ; 
-		sleep 1 ;
+		chkQ;  sleep 1 ;
 	done
 }
 
