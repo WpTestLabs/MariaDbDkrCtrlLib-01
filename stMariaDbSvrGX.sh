@@ -7,6 +7,11 @@ set -e
 msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
   msg "TL Start: stMariaDbSvrGX.sh"
 
+heartBeat () {	
+	while true; 	do  msg "SqlHB `mysqladmin ping;` ; sleep 1 ;
+	done
+}
+
 echo "Starting (in Kan) stMariaDbSrv.sh" 
 echo ">>> \`date\` - Start: stMariaDbSrv.sh  In Guest Path: \`pwd\`"
 ls -R /srv && pwd
@@ -28,4 +33,5 @@ fi
 msg "TL >> Starting MariaDB Service (this is final mesg) <<"
 #  @@@ w/ "include in /etc/my.cnf,  --defaults-extra-file should not be needed!
 # vvv defaults-extra has No Host Resolve !!
+heartBeat &
 exec su-exec $MdbUsr mysqld --defaults-extra-file=$SrvGP/my.cnf
