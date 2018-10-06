@@ -14,11 +14,11 @@ chkQ () { local lst=`ls $BatGP/inQ`
 	fi
 }
 
-sqlPing () { mysqladmin ping; echo "   xc: $?"; }
+sqlPing () { local s=`mysqladmin ping`; echo "$?  $s"; }
 
 heartBeat () {	
 	while true;  do  msg "SqlHB `sqlPing`" ; 
-		chkQ;  sleep 1 ;
+		chkQ;  sleep 10 ;
 	done
 }
 
