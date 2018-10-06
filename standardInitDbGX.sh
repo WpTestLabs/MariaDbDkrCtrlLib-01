@@ -53,6 +53,6 @@ echo 'SELECT * FROM mysql.user;' | mysql -u root
 #msg "####################################################################################"
 #mysqld -v --help && mysqladmin -uroot  variables
 mysqladmin -uroot   status  shutdown   
-sleep 20
+sleep 2
 #msg ">>>>>>>>>>>>>>>>  StandardInitDB.sh -- Exited mysqladmin, after giving shutdown cmd"
 #xx sleep 20;  ps -ef > $MsgPipeGP; 
