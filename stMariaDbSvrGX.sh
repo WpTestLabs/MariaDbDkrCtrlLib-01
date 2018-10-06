@@ -5,10 +5,10 @@ set -e
 . /srv/guestEnv.sh
 #msg () { echo \$1;  echo \$1 > $MsgPipeGP; }
 msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
-  msg "TL Start: stMariaDbSvrGX.sh"
+  msg "TL [SQL] Start: stMariaDbSvrGX.sh"
 
 heartBeat () {	
-	while true; 	do  msg "SqlHB `mysqladmin ping;` ; sleep 1 ;
+	while true; 	do  msg "SqlHB `mysqladmin ping;`" ; sleep 1 ;
 	done
 }
 
@@ -30,7 +30,7 @@ else
 	echo "Existing DB found, starting existing DB"
 	# check if id chown needed @@@@@@@@@@@@@ (are files owned by wrong ID # ??)
 fi
-msg "TL >> Starting MariaDB Service (this is final mesg) <<"
+msg "TL [SQL] Starting MariaDB Service (this is final mesg) <<"
 #  @@@ w/ "include in /etc/my.cnf,  --defaults-extra-file should not be needed!
 # vvv defaults-extra has No Host Resolve !!
 heartBeat &
