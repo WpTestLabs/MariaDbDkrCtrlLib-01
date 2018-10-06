@@ -7,9 +7,9 @@ set -e
 msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
   msg "TL [SQL] Start: stMariaDbSvrGX.sh"
 
-chkQ () {
-	if [[ -n "$BatGP/inQ/*" ]]; then 
-	    msg "# [SQL] chkQ() - Found: `$BatGP/inQ/*`"
+chkQ () { local lst=`ls $BatGP/inQ`
+	if [[ -n "$lst" ]]; then 
+	    msg "# [SQL] chkQ() - Found: $lst"
 	    mv $BatGP/inQ/* $BatGP/pending/
 	fi
 }
