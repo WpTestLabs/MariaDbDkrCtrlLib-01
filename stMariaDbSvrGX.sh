@@ -8,7 +8,8 @@ msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
   msg "TL [SQL] Start: stMariaDbSvrGX.sh"
 
 heartBeat () {	
-	while true; 	do  msg "SqlHB `mysqladmin ping;`" ; sleep 1 ;
+	while true;  do  msg "SqlHB `mysqladmin ping; echo "xc: $?; `" ; 
+		sleep 1 ;
 	done
 }
 
