@@ -9,11 +9,10 @@ export SrvGP=/srv
 export DbDataGP=$SrvGP/DataDir
 export RunGP=$SrvGP/run
 export RunWkFloGP=$RunGP/wkFlo
+export BatGP=$SrvGP/bat
 
-export MdbGrp=mysql       # ?? <<< @@@ can't pickup /root/.my.cnf !!!
+export MdbGrp=mysql
 export MdbUsr=mysql
-#export MdbGrp=root
-#export MdbUsr=root
 EOF
 }
 if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
@@ -25,6 +24,8 @@ export MySqlRtPwHPFN=$KnSrvHP/.msRoot.pwa
 mkdir -p $KnBasHP/{$DbDataGP,$RunWkFloGP};
   ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
   echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
+
+mkdir -p $KnBasHP/$BatGP/{inQ,pending,cur,outQ} #@@@@
 
 if [[ ! -e $KnSrvHP/guestEnv.sh ]]; then 
     mv $KnBasHP/guestEnv.sh $KnSrvHP;   
