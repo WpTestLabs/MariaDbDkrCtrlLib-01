@@ -14,7 +14,7 @@ chkQ () { local lst=`ls $BatGP/inQ`
 	fi
 }
 
-sqlPing () { local s=`mysqladmin ping`; echo "$?  $s"; }
+sqlPing () { local s=`mysqladmin ping` r=$? ; echo "$r  $s"; }
 
 heartBeat () {	
 	while true;  do  msg "SqlHB `sqlPing`" ; 
