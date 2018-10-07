@@ -5,6 +5,7 @@ set -e
 . /srv/guestEnv.sh
 #msg () { echo \$1;  echo \$1 > $MsgPipeGP; }
 msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
+export -f msg
   msg "TL [SQL] Start: stMariaDbSvrGX.sh"
 
 chkQ () { local lst=`ls $BatGP/inQ`
