@@ -43,5 +43,6 @@ fi
 msg "TL [SQL] Starting MariaDB Service (this is final mesg) <<"
 #  @@@ w/ "include in /etc/my.cnf,  --defaults-extra-file should not be needed!
 # vvv defaults-extra has No Host Resolve !!
-heartBeat &
+#  heartBeat &
+$SrvGP/sqlHeartBeatGX.sh &
 exec su-exec $MdbUsr mysqld --defaults-extra-file=$SrvGP/my.cnf
