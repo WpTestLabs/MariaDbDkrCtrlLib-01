@@ -7,6 +7,7 @@ set -e
 msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
 export -f msg
   msg "TL [SQL] Start: stMariaDbSvrGX.sh"
+  msg  "# [SQL] Start: stMariaDbSvrGX.sh"
 
 chkQ () { local lst=`ls $BatGP/inQ`
 	if [[ -n "$lst" ]]; then 
