@@ -23,6 +23,17 @@ Run () {
 }
 Stop () { DkrStop; }
 
+QFile () {	echo "  QFile() - PFN: $1 -- `basename $1`"
+    local pfn=$1  baseN=`basename $1;`;  shift;	
+    local qInHP=$KnBasHP/srv/bat/inQ
+	if [[ -e $pfn ]]; then
+		echo "  vvvv  Found file  vvvv";  cat $pfn;
+            cp $pfn $qInHP/baseN
+	else
+		echo "  *** QFile() - File Missing - $pfn ***"
+	fi 
+}
+
 DoSqlFile () {	echo "  DoSqlFile() - PFN: $1 -- `basename $1`"
 	local pfn=$1  baseN=`basename $1;`;  shift;	
 	local qInHP=$KnBasHP/srv/Q/In;		mkdir -p $qInHP;
