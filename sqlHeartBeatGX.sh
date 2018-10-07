@@ -10,7 +10,9 @@ export SleepCnt=10
 
 cd $SrvGP
   
-chkKids () { ps -ppid $$ -o pid,comm,state --no-headers | \
+chkKids () { msg "# [SQL] Start: sqlHeartBeatGX.chkKids()";
+   #xx ps -ppid $$ -o pid,comm,state --no-headers | \ Alpine BusyBox: Missing options 
+   	ps -o ppid= -o pid= -o comm= -o stat= | \
 	while read ln; do msg "#[sql] chkKids() - $ln"; done
 }
 chkQ () { local lst=`ls $BatGP/inQ`
@@ -31,4 +33,5 @@ onBeat () {   msg "SqlHB `sqlPing`";
 }
 heartBeat () {	while true; do onBeat; sleep $SleepCnt; done; }
 
+msg "# [SQL]  sqlHeartBeat.sh - Start: heartBeat()"
 heartBeat
