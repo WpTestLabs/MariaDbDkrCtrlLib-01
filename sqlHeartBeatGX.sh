@@ -3,6 +3,7 @@
 set -e
 # msg () { echo "$@" >> /srv/run/wkFlo/hstWkFloRcv.fifo; }
   msg "TL [SQL] Start: sqlHeartBeatGX.sh"
+  msg  "# [SQL] Start: sqlHeartBeatGX.sh"
 
 export SleepCnt=10
 . $SrvGP/guestEnv.sh
