@@ -21,7 +21,7 @@ msg  "# [SQL] sqlHeartBeatGX.sh - After: chkKids()"
 chkQ () { local lst=`ls $BatGP/inQ`
     if [[ -n "$lst" ]]; then 
 	    msg "# [SQL] chkQ() - Found: $lst"
-	if [[ -z "`ls $BatGP/pending`" ]]
+	if [[ -z "`ls $BatGP/pending`" ]]; then
 			msg "# [SQL] Moving Q'd files to pending"
             mv $BatGP/inQ/* $BatGP/pending/
 			./sqlTskRnrGX.sh
