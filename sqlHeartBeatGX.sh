@@ -18,7 +18,7 @@ chkKids () { msg "# [SQL] Start: sqlHeartBeatGX.chkKids()";
 }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: chkKids()"
 
-stTstRnr () {  ./sqlTskRnrGX.sh; }
+stTskRnr () {  /srv/sqlTskRnrGX.sh; > /srv/stTskRnr.log; }
 
 chkQ () { local lst=`ls $BatGP/inQ`
     if [[ -n "$lst" ]]; then 
