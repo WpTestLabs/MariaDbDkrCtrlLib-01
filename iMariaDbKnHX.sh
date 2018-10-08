@@ -13,6 +13,8 @@ export BatGP=$SrvGP/bat
 
 export MdbGrp=mysql
 export MdbUsr=mysql
+# -- Host ---
+export KnBasHP=$KnBasHP
 EOF
 }
 if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
