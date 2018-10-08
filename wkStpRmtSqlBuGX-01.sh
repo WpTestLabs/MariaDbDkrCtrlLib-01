@@ -11,7 +11,7 @@ export KnBasHP=$SrvKnz/$KnN  #@@ ?? What if SQL on baremetal, or in (Multi Kn) c
 # -- Def --
 export myDbN=NgxMainDfltHst__vvDB  # @@ $1
   msg "# [SQL] Start: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
-env > /wkStpEnv.txt
+env > /srv/wkStpEnv.txt
 # -- GX Pln --
 export SqlDmpGstBP=/srv/bat/outQ ;  mkdir -p $SqlDmpGstBP 
 
