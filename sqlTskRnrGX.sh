@@ -18,7 +18,7 @@ while true; do   lst=`ls $BatGP/pending`
   if [[ -n "lst" ]]; then
     for f in $lst; do  msg "# [SQL] sqlTskRnr - Next file: $f"
 		  mv $BatGP/pending/$f  $BatGP/cur
-	diagFileN $f;  rnFl $BatGP/cur/$f
+	diagFileN $f;  rnFl $BatGP/cur/$f > $BatGP/cur/tstRnr-${f}.log
 
       sleep 3;
     done
