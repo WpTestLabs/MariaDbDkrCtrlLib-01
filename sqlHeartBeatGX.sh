@@ -13,10 +13,12 @@ cd $SrvGP
   
 chkKids () { msg "# [SQL] Start: sqlHeartBeatGX.chkKids()";
    #xx ps -ppid $$ -o pid,comm,state --no-headers | \ Alpine BusyBox: Missing options 
-   	ps -o ppid= -o pid= -o comm= -o stat= | \
+   	ps -o ppid= -o pid= -o stat= -o args= | \
 	while read ln; do msg "# [sql] chkKids() - ps:  $ln"; done
 }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: chkKids()"
+
+stTstRnr () {  ./sqlTskRnrGX.sh; }
 
 chkQ () { local lst=`ls $BatGP/inQ`
     if [[ -n "$lst" ]]; then 
@@ -24,7 +26,7 @@ chkQ () { local lst=`ls $BatGP/inQ`
 	if [[ -z "`ls $BatGP/pending`" ]]; then
 			msg "# [SQL] Moving Q'd files to pending"
             mv $BatGP/inQ/* $BatGP/pending/
-			./sqlTskRnrGX.sh
+		stTskRnr
         else  msg "# [SQL] Already have pending files to clear first." 
         fi	
     fi
@@ -34,7 +36,7 @@ sqlPing () { local s=`mysqladmin ping` r=$? ; echo "$r  $s"; }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: sqlPing()"
 
 onBeat () {   msg "SqlHB `sqlPing`";
-    chkKids;  chkQ;	
+    chkKids;  chkQ;
 }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: onBeat()"
 
