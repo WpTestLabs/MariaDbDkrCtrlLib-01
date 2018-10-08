@@ -10,10 +10,10 @@ export KnBasHP=$SrvKnz/$KnN  #@@ ?? What if SQL on baremetal, or in (Multi Kn) c
 
 # -- Def --
 export myDbN=NgxMainDfltHst__vvDB  # @@ $1
-  msg "TL Start: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
-
+  msg "# [SQL] Start: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
+env > /wkStpEnv.txt
 # -- GX Pln --
-export SqlDmpGstBP=/srv/Out/dmp ;  mkdir -p $SqlDmpGstBP 
+export SqlDmpGstBP=/srv/bat/outQ ;  mkdir -p $SqlDmpGstBP 
 
 # -- GX RT -- Respective HstPth's are: $KnBasHP/$myDmp__FQGPFN
 export myDmpFQGPFN=$SqlDmpGstBP/${myDbN}.sql
@@ -44,7 +44,7 @@ sMyDmpStsEnv 2 $myDmpExitCode
 
 if [[ "0" == "$myDmpExitCode" ]]; then mv $myDmpTmpFQGPFN $myDmpFQGPFN; fi
 # @@ kick: Sql Dmp (result) ready (for next step in WkFlo) 
-echo "WkPrxySQL    EC: $myDmpExitCode  pfn: $myDmpFQGPFN"
-msg "TL WkPrxySQL   $myDmpExitCode  $KnBasHP$SqlDmpGstBP  $myDmpFQGPFN"
+#   echo "WkPrxySQL    EC: $myDmpExitCode  pfn: $myDmpFQGPFN"
+msg "# [SQL] WkPrxySQL   $myDmpExitCode  $KnBasHP$SqlDmpGstBP  $myDmpFQGPFN"
 msg "WkPrxySQL   $myDmpExitCode  $KnBasHP$SqlDmpGstBP  $myDmpFQGPFN"
-msg "TL End: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
+msg "# [SQL] End: wkStpRmtBuGX-01.sh - BU DB: $myDbN"
