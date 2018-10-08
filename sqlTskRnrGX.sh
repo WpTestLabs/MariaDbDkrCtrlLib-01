@@ -9,13 +9,17 @@ diagFileN () { msg "# [SQL] ----------------------------"
     msg "# [SQL] diagFileN() - File Extension without Name: " ${1##*.}
 }
 
-
+rnFl () { msg "# [SQL] Start: $SrvGP/sqlTskRnrGX.rnFl() - $1"; 
+	$1; xc=$?;
+	msg "# [SQL] End: $SrvGP/sqlTskRnrGX.rnFl() - $1  xc: $xc";
+}
 
 while true; do   lst=`ls $BatGP/pending`
   if [[ -n "lst" ]]; then
     for f in $lst; do  msg "# [SQL] sqlTskRnr - Next file: $f"
 		  mv $BatGP/pending/$f  $BatGP/cur
-	diagFileN $f
+	diagFileN $f;  rnFl $BatGP/cur
+
       sleep 3;
     done
   else  msg "# [SQL] sqlTskRnrGX.sh - Nothing in Q"
