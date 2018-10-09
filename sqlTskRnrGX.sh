@@ -25,7 +25,9 @@ rnFl () { msg "# [SQL] Start: $SrvGP/sqlTskRnrGX.rnFl() - $1";
 	    sql)  msg "# [SQL] sqlTskRnrGX.rnFl() - Still NO Handler for SQL files!";;
 	    *)    msg "# [SQL] sqlTskRnrGX.rnFl() - ** NO Handler for $fx files! **";;
 	esac
-	return 22; #  $xc;
+        [[ $xc = "0" ]] && $RunFileExitGood || $RunFileExitBad;
+	msg "# [SQL] End: sqlTskRnrGX.rnFl()"
+#qq hangs??	return 22; #  $xc;
 }
 
 while true; do   lst=`ls $BatGP/pending`
