@@ -21,7 +21,7 @@ rnFl () { msg "# [SQL] Start: $SrvGP/sqlTskRnrGX.rnFl() - $1";
 	msg "# [SQL] sqlTskRnrGX.rnFl() - File Ext: $fx";
 	case $fx in
 	    sh)   $1; xc=$?;
-	          msg "# [SQL] sqlTskRnrGX.rnFl() - End .sh $1  xc: $xc";
+	          msg "# [SQL] sqlTskRnrGX.rnFl() - End .sh $1  xc: $xc";;
 	    sql)  msg "# [SQL] sqlTskRnrGX.rnFl() - Still NO Handler for SQL files!";;
 	    *)    msg "# [SQL] sqlTskRnrGX.rnFl() - ** NO Handler for $fx files! **";;
 	esac
@@ -31,11 +31,11 @@ rnFl () { msg "# [SQL] Start: $SrvGP/sqlTskRnrGX.rnFl() - $1";
 while true; do   lst=`ls $BatGP/pending`
   if [[ -n "lst" ]]; then
     for f in $lst; do  msg "# [SQL] sqlTskRnr.loop - Next file: $f"; # diagFileN $f;
-        mv $BatGP/pending/$f  $BatGP/$myCur
+    	mkdir -p $BatGP/$myCur;   mv $BatGP/pending/$f  $BatGP/$myCur
 	
 	rnFl $BatGP/$myCur/$f > $BatGP/$myCur/tskRnr-${f}.log;  xc=$? 
 	msg "# [SQL] sqlTskRnr.loop - Exit Code for file: $f";
-        [[ $xc = "0" ]] && $RunFileExitGood || $RunFileExitBad;;
+        [[ $xc = "0" ]] && $RunFileExitGood || $RunFileExitBad;
 
         sleep 1;
     done
