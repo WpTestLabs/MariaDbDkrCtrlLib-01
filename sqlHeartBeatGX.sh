@@ -20,16 +20,17 @@ msg  "# [SQL] sqlHeartBeatGX.sh - After: chkKids()"
 
 
 stTskRnr () {  touch /srv/stTskRnr.log; # @@ tskRnr only starts if no log file yet
-	/srv/sqlTskRnrGX.sh > /srv/stTskRnr.log &; 
+	/srv/sqlTskRnrGX.sh > /srv/stTskRnr.log &
 }
+msg  "# [SQL] sqlHeartBeatGX.sh - After: stTskRnr()"
 
 chkQ () { local lst=`ls $BatGP/inQ`
     if [[ -n "$lst" ]]; then 
 	    msg "# [SQL] chkQ() - Found: $lst"
 	if [[ -z "`ls $BatGP/pending`" ]]; then
-			msg "# [SQL] Moving Q'd files to pending"
+	    msg "# [SQL] Moving Q'd files to pending"
             mv $BatGP/inQ/* $BatGP/pending/
-		[[ -e /srv/stTskRnr.log ]] || stTskRnr #@@ ?? multi tskRnr's 
+	    [ -e /srv/stTskRnr.log ] || stTskRnr #@@ ?? multi tskRnr's 
         else  msg "# [SQL] sqlHeartBeatGX.chkQ() - Already have pending files to clear first." 
         fi	
     fi
@@ -45,5 +46,5 @@ msg  "# [SQL] sqlHeartBeatGX.sh - After: onBeat()"
 
 heartBeat () {	while true; do onBeat; sleep $SleepCnt; done; }
 
-msg "# [SQL]  sqlHeartBeat.sh - Calling: heartBeat()"
+msg "# [SQL]  sqlHeartBeat.sh - Calling: heartBeat() - (while true loop)"
 heartBeat
