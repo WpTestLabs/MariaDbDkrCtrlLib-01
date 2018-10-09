@@ -18,7 +18,10 @@ chkKids () { msg "# [SQL] Start: sqlHeartBeatGX.chkKids()";
 }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: chkKids()"
 
-stTskRnr () {  /srv/sqlTskRnrGX.sh; > /srv/stTskRnr.log; }
+
+stTskRnr () {  touch /srv/stTskRnr.log; # @@ tskRnr only starts if no log file yet
+	/srv/sqlTskRnrGX.sh > /srv/stTskRnr.log &; 
+}
 
 chkQ () { local lst=`ls $BatGP/inQ`
     if [[ -n "$lst" ]]; then 
@@ -26,8 +29,8 @@ chkQ () { local lst=`ls $BatGP/inQ`
 	if [[ -z "`ls $BatGP/pending`" ]]; then
 			msg "# [SQL] Moving Q'd files to pending"
             mv $BatGP/inQ/* $BatGP/pending/
-		stTskRnr
-        else  msg "# [SQL] Already have pending files to clear first." 
+		[[ -e /srv/stTskRnr.log ]] || stTskRnr #@@ ?? multi tskRnr's 
+        else  msg "# [SQL] sqlHeartBeatGX.chkQ() - Already have pending files to clear first." 
         fi	
     fi
 }
@@ -35,8 +38,8 @@ msg  "# [SQL] sqlHeartBeatGX.sh - After: chkQ()"
 sqlPing () { local s=`mysqladmin ping` r=$? ; echo "$r  $s"; }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: sqlPing()"
 
-onBeat () {   msg "SqlHB `sqlPing`";
-    chkKids;  chkQ;
+onBeat () {   msg "SqlHB `sqlPing`";  #    chkKids;  
+	chkQ;
 }
 msg  "# [SQL] sqlHeartBeatGX.sh - After: onBeat()"
 
