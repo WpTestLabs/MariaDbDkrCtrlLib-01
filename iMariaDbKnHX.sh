@@ -1,5 +1,6 @@
 #!/bin/sh
-	echo "Start: \$SrvLib/iMariaDbKnHX.sh - KnBasHP: $KnBasHP"; # called by __
+	TL "Start: \$SrvLib/iMariaDbKnHX.sh - KnBasHP: $KnBasHP"; # called by __
+$SrvReq/WkFloRcv
 mkdir -p $KnBasHP
 
 mkGuestEnv () {
