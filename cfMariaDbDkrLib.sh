@@ -70,7 +70,12 @@ DbDmp () { echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (1)";
 #        mkfifo $KnBasHP$KnWkFloFifoGPFN
 #    
 #    fi
-    echo $@ > $KnBasHP$KnWkFloFifoGPFN
+
+    echo "A: $@" 
+    echo "$@" > $KnBasHP$KnWkFloFifoGPFN
+    unset $@
+    echo "Z: $@" 
+    echo "End: DbDmp()"
 }
 
 gInQHP () { echo "$KnBasHP/srv/bat/inQ"; }
