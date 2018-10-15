@@ -39,6 +39,7 @@ ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
   echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
 
 mkfifo $KnBasHP$KnWkFloFifoGPFN
+echo "### Start: $KnWkFloLogGPFN ###" >$KnBasHP$KnWkFloLogGPFN
 
 mkdir -p $KnBasHP/$BatGP/{inQ,pending,cur,outQ} #@@@@
 
