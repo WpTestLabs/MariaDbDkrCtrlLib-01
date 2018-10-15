@@ -63,6 +63,15 @@ DoShFile () {	echo "  DoShFile() - PFN: $1 -- `basename $1`"
 	fi 
 }
 
+DbDmp () { echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (1)";
+    . $KnBasHP/guestEnv.sh;  echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP (2)";
+#    if [[ ! -e "$KnBasHP$KnWkFloFifoGPFN" ]]; then
+#        mkfifo $KnBasHP$KnWkFloFifoGPFN
+#    
+#    fi
+    
+}
+
 gInQHP () { echo "$KnBasHP/srv/bat/inQ"; }
 
 doCli $@
