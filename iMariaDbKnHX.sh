@@ -38,7 +38,7 @@ mkdir -p $KnBasHP/{$DbDataGP,$RunWkFloGP};
 ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
   echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
 
-mkfifo $KnSrvHP$KnWkFloFifoGPFN
+mkfifo $KnBasHP$KnWkFloFifoGPFN
 
 mkdir -p $KnBasHP/$BatGP/{inQ,pending,cur,outQ} #@@@@
 
