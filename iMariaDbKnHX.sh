@@ -12,6 +12,9 @@ export RunGP=$SrvGP/run
 export RunWkFloGP=$RunGP/wkFlo
 export BatGP=$SrvGP/bat
 
+export KnWkFloFifoGPFN=$RunWkFloGP/WkFlo2Kn.fifo
+export KnWkFloLogGPFN=$RunWkFloGP/WkFlo2KnLog.txt
+
 export MdbGrp=mysql
 export MdbUsr=mysql
 # -- Host ---
