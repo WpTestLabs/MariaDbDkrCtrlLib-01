@@ -1,6 +1,7 @@
 #!/bin/sh
 	TL "Start: \$SrvLib/iMariaDbKnHX.sh - KnBasHP: $KnBasHP"; # called by __
 $SrvReq/WkFloRcv
+[[ -e $KnBasHP/guestEnv.sh ]] && exit; # Exit early if Kn already initialized
 mkdir -p $KnBasHP
 
 mkGuestEnv () {
@@ -21,6 +22,7 @@ export MdbUsr=mysql
 export KnBasHP=$KnBasHP
 EOF
 }
+# ?? With early exit at top, then always run mkGuestEnv here!! ? @@@
 if [[ ! -e $KnBasHP/guestEnv.sh ]]; then  mkGuestEnv; fi
 
 . $KnBasHP/guestEnv.sh
