@@ -77,6 +77,11 @@ DbDmp () { echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (1)";
     echo "Z: $@" 
     echo "End: DbDmp()"
 }
+msg () { On; 
+    . $KnBasHP/guestEnv.sh;  echo "[Hst] cfMariaDbDkrLib.msg() - RunGP: $RunGP";
+    echo "Msg>> $@" 
+    echo "$@" > $KnBasHP$KnWkFloFifoGPFN
+}
 
 gInQHP () { echo "$KnBasHP/srv/bat/inQ"; }
 
