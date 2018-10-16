@@ -32,7 +32,7 @@ export KnSrvHP=$KnBasHP$SrvGP
 export MySqlRtPwHPFN=$KnSrvHP/.msRoot.pwa
 
 [[ -e "$KnBasHP$RunGP" ]] && rm -fr $KnBasHP$RunGP;   
-mkdir -p $KnBasHP/{$SrvGP/{bin,lib},$DbDataGP,$RunWkFloGP};
+mkdir -p $KnBasHP/{$SrvGP/{bin,lib/wkFlo/cmd},$DbDataGP,$RunWkFloGP};
 [[ -e "$KnSrvHP/guestEnv.sh" ]] && exit; # EARLY Exit -- Below only for FIRST Run();
 
 ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
@@ -40,6 +40,7 @@ ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
 ln $SrvBin/WkFloSqlRcv.sh $KnBasHP$SrvGP/bin/WkFloSqlRcv.sh
 ln $SrvLib/fifoRcvLib-01.sh $KnBasHP$SrvGP/lib/fifoRcvLib-01.sh
 
+ln $SrvLib/mariaDB/GX/wkFlo/cmd/*  $KnBasHP$SrvGP/lib/wkFlo/cmd/
 
 mkfifo $KnBasHP$KnWkFloFifoGPFN
 echo "### Start: $KnWkFloLogGPFN ###" >$KnBasHP$KnWkFloLogGPFN
