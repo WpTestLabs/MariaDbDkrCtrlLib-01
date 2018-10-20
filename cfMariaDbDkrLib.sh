@@ -63,7 +63,7 @@ DoShFile () {	echo "  DoShFile() - PFN: $1 -- `basename $1`"
 	fi 
 }
 
-DbDmp () { echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (1)";
+xDbDmp () { echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (1)";
     On; echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (2)";
     . $KnBasHP/guestEnv.sh;  echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP (3)";
 #    if [[ ! -e "$KnBasHP$KnWkFloFifoGPFN" ]]; then
@@ -82,6 +82,33 @@ msg () { On;
     echo "Msg>> $@" 
     echo "$@" > $KnBasHP$KnWkFloFifoGPFN
 }
+# sql WkFlo $WfToken cmdGX DbN ...
+
+log () { echo "$@"; } # for ez upgrade
+
+declare -A WfCmdMP
+  WfCmdMP[DbDmp]=DbDmp
+
+export WkFloTkn
+
+WkFlo () { On;  WkFloTkn= $1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd; shift 2;
+  
+  cmd=${WfCmdMP[$cmd0]};  [[ -n "$cmd" ]] && $cmd "$@" && return;
+  log "SqlCli.wkFlo() >> $cmd0 is NOT an Internal Command!"
+  if [[ -e $cmdGP/$cmd0 ]]; then
+    $cmdGP/$cmd0 "$@";  xc=$?; 
+	log "SqlCli.wkFlo() >> $cmd0 - Exit Code: $xc"
+  else 
+    log "** SqlCli.wkFlo() >> $cmd0 is NOT an External Command! **"
+  fi
+}
+DbDmp () {  log "SqlCli.DbDmp() >> Start: tkn: $WkFloTkn  args: $@"
+  log "Msg 2 SQL >> WkFlo $WkFloTkn DbDmp $@"
+  msg "WkFlo $WkFloTkn DbDmp $@"
+  log "SqlCli.DbDmp() >> End - msg sent."
+}  
+ 
+
 
 gInQHP () { echo "$KnBasHP/srv/bat/inQ"; }
 
