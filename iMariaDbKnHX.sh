@@ -21,7 +21,7 @@ export MdbGrp=mysql
 export MdbUsr=mysql
 export SqlSrvID=AbcXyz # ==> ? `pwgen -s1 32`
 # -- Host ---
-export KnBasHP=$KnBasHP
+export KnBasHP=$KnBasHP  # @@@ If Kn is relocated, this overwrites NEW KnBasHP @@@@
 EOF
 }
 # ?? With early exit at top, then always run mkGuestEnv here!! ? @@@
