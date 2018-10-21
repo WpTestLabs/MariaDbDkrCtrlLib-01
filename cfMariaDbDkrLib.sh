@@ -116,8 +116,6 @@ DbDmp () {  log "SqlCli.DbDmp() >> Start: tkn: $WkFloTkn  args: $@"
   log "SqlCli.DbDmp() >> End - msg sent."
 }  
  
-
-
 gInQHP () { echo "$KnBasHP/srv/bat/inQ"; }
 
 doCli $@
