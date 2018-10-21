@@ -89,10 +89,11 @@ log () { echo "$@"; } # for ez upgrade
 declare -A WfCmdMP
   WfCmdMP[DbDmp]=DbDmp
 
-export WkFloTkn
-
-WkFlo () { On;  WkFloTkn= $1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd; shift 2;
+WkFlo () { On;  export WkFloTkn=$1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd; shift 2;
   
+  mkdir -p $SrvWkFlo/tkn  # @@@@@@@@ ==> ___??
+  echo "log \"[WfRcv] Loaded token env: AbcXyz\"" > $SrvWkFlo/tkn/AbcXyz
+
   cmd=${WfCmdMP[$cmd0]};  [[ -n "$cmd" ]] && $cmd "$@" && return;
   log "SqlCli.wkFlo() >> $cmd0 is NOT an Internal Command!"
   if [[ -e $cmdGP/$cmd0 ]]; then
@@ -103,6 +104,12 @@ WkFlo () { On;  WkFloTkn= $1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd; shif
   fi
 }
 DbDmp () {  log "SqlCli.DbDmp() >> Start: tkn: $WkFloTkn  args: $@"
+  echo "Loading $KnBasHP/guestEnv.sh..." 
+  . $KnBasHP/guestEnv.sh;    
+  echo "sql.WkFlo.DbDmp() - SrvWkFlo: $SrvWkFlo  SqlSrvID: $SqlSrvID"
+  mkdir -p $SrvWkFlo/$SqlSrvID/WfDbDmpCB/{G,B,w8}
+  #@@ ln -sf __/$WkFloTkn $SrvWkFlo/$SqlSrvID/WfDbDmpCB/w8  #@@@@@@@@@@
+  
   log "Msg 2 SQL >> WkFlo $WkFloTkn DbDmp $@"
   msg "WkFlo $WkFloTkn DbDmp $@"
   log "SqlCli.DbDmp() >> End - msg sent."
