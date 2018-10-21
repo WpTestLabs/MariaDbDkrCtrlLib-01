@@ -19,7 +19,7 @@ export KnWkFloLogGPFN=$RunWkFloGP/WkFlo2KnLog.txt
 
 export MdbGrp=mysql
 export MdbUsr=mysql
-export SqlSrvID=AbcXyz # ==> ? `pwgen -s1 32`
+export SqlSrvID=SsID__ # ==> ? `pwgen -s1 32`
 # -- Host ---
 export KnBasHP=$KnBasHP  # @@@ If Kn is relocated, this overwrites NEW KnBasHP @@@@
 EOF
