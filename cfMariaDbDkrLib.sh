@@ -39,10 +39,10 @@ DoSqlFile () {	echo "  DoSqlFile() - PFN: $1 -- `basename $1`"
 	local qInHP=$KnBasHP/srv/Q/In;		mkdir -p $qInHP;
 	if [[ -e $pfn ]]; then
 		echo "  vvvv  Found file  vvvv";  cat $pfn;
-		cp -p $pfn $qInHP;  						ls -al $qInHP;  cat $qInHP/$baseN
+		cp -p $pfn $qInHP;  		ls -al $qInHP;  cat $qInHP/$baseN
 		docker exec  $CID mysql -uroot -e "source /srv/Q/In/$baseN;";
 
-		rm $qInHP/$baseN;							ls -al $qInHP;
+		rm $qInHP/$baseN;		ls -al $qInHP;
 	else
 		echo "  *** SQL File Missing - $pfn ***"
 	fi 
@@ -54,7 +54,8 @@ DoShFile () {	echo "  DoShFile() - PFN: $1 -- `basename $1`"
 	local knSrvTmpHP=$KnBasHP/$knSrvTmpGP;		mkdir -p $knSrvTmpHP;
 	if [[ -e $hpfn ]]; then
 		echo "  vvvv  Found file  vvvv";  cat $hpfn;
-		cp -p $hpfn $knSrvTmpHP;  		ls -al $knSrvTmpHP;  cat $knSrvTmpHP/$baseN
+		cp -p $hpfn $knSrvTmpHP;  	
+		    ls -al $knSrvTmpHP;  cat $knSrvTmpHP/$baseN
 		docker exec  $CID $knSrvTmpGP/$baseN $@;
 
 		rm $knSrvTmpHP/$baseN;			ls -al $knSrvTmpHP;
