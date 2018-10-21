@@ -2,7 +2,7 @@
     TL "Start: \$SrvLib/iMariaDbKnHX.sh - KnBasHP: $KnBasHP"; # called by __
 #   iMariaDbKnHX is called by SQL.Run() - always re-init KnRun, but rest only if not already???
 $SrvReq/WkFloRcv
-#qq [[ -e $KnBasHP/guestEnv.sh ]] && exit; # Exit early if Kn already initialized
+	#qq [[ -e $KnBasHP/guestEnv.sh ]] && exit; # Exit early if Kn already initialized
 mkdir -p $KnBasHP
 
 mkGuestEnv () {
@@ -19,6 +19,7 @@ export KnWkFloLogGPFN=$RunWkFloGP/WkFlo2KnLog.txt
 
 export MdbGrp=mysql
 export MdbUsr=mysql
+export SqlSrvID=AbcXyz # ==> ? `pwgen -s1 32`
 # -- Host ---
 export KnBasHP=$KnBasHP
 EOF
@@ -34,24 +35,20 @@ export MySqlRtPwHPFN=$KnSrvHP/.msRoot.pwa
 [[ -e "$KnBasHP$RunGP" ]] && rm -fr $KnBasHP$RunGP;   
 mkdir -p $KnBasHP/{$SrvGP/{bin,lib/wkFlo/cmd},$DbDataGP,$RunWkFloGP};
 [[ -e "$KnSrvHP/guestEnv.sh" ]] && exit; # EARLY Exit -- Below only for FIRST Run();
+    mv $KnBasHP/guestEnv.sh $KnSrvHP;
+    ln -srf $KnSrvHP/guestEnv.sh $KnBasHP/guestEnv.sh 
 
 ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
-  echo "HX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
+  echo "iMariaDbKnHX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
 ln $SrvBin/WkFloSqlRcv.sh $KnBasHP$SrvGP/bin/WkFloSqlRcv.sh
 ln $SrvLib/fifoRcvLib-01.sh $KnBasHP$SrvGP/lib/fifoRcvLib-01.sh
-
 ln $SrvLib/MariaDB/GX/wkFlo/cmd/*  $KnBasHP$SrvGP/lib/wkFlo/cmd/
 
 mkfifo $KnBasHP$KnWkFloFifoGPFN
 echo "### Start: $KnWkFloLogGPFN ###" >$KnBasHP$KnWkFloLogGPFN
 
-mkdir -p $KnBasHP/$BatGP/{inQ,pending,cur,outQ} #@@@@
+mkdir -p $KnBasHP/$BatGP/{inQ,pending,cur,outQ} #xx??? @@@@@@@@@@@@@@
 
-# vvvv ???
-#if [[ ! -e $KnSrvHP/guestEnv.sh ]]; then 
-    mv $KnBasHP/guestEnv.sh $KnSrvHP;   
-	ln -srf $KnSrvHP/guestEnv.sh $KnBasHP/guestEnv.sh 
-#fi
 mkMsRtPW () { 	echo "mkMsRtPW - usr: `whoami`    pwd: `pwd`    target dir: $KnSrvHP"
 	pwgen -s1 32 >$MySqlRtPwHPFN; 
 	chown root:root $MySqlRtPwHPFN && chmod 400 $MySqlRtPwHPFN
