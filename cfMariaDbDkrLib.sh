@@ -91,7 +91,7 @@ declare -A WfCmdMP
 
 WkFlo () { On;  export WkFloTkn=$1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd; shift 2;
   
-  mkdir -p $SrvWkFlo/tkn  # @@@@@@@@ ==> ___??
+  mkdir -p $SrvWkFlo/{svrCB,tkn}  # @@@@@@@@ ==> ___??
   echo "log \"[WfRcv] Loaded token env: AbcXyz\"" > $SrvWkFlo/tkn/AbcXyz
 
   cmd=${WfCmdMP[$cmd0]};  [[ -n "$cmd" ]] && $cmd "$@" && return;
@@ -107,7 +107,7 @@ DbDmp () {  log "SqlCli.DbDmp() >> Start: tkn: $WkFloTkn  args: $@"
   echo "Loading $KnBasHP/guestEnv.sh..." 
   . $KnBasHP/guestEnv.sh;    
   echo "sql.WkFlo.DbDmp() - SrvWkFlo: $SrvWkFlo  SqlSrvID: $SqlSrvID"
-  mkdir -p $SrvWkFlo/$SqlSrvID/WfDbDmpCB/{G,B,w8}
+  mkdir -p $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/{G,B,w8}
   #@@ ln -sf __/$WkFloTkn $SrvWkFlo/$SqlSrvID/WfDbDmpCB/w8  #@@@@@@@@@@
   
   log "Msg 2 SQL >> WkFlo $WkFloTkn DbDmp $@"
