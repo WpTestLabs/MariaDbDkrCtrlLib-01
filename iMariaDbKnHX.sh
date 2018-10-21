@@ -39,7 +39,7 @@ mkdir -p $KnBasHP/{$SrvGP/{bin,lib/wkFlo/cmd},$DbDataGP,$RunWkFloGP};
     ln -srf $KnSrvHP/guestEnv.sh $KnBasHP/guestEnv.sh 
 
 ln $Srv/run/wkFlo/hstWkFloRcv.fifo $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
-  echo "iMariaDbKnHX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
+  echo "# iMariaDbKnHX: via MariaDB hard link to fifo" > $KnBasHP/$RunWkFloGP/hstWkFloRcv.fifo
 ln $SrvBin/WkFloSqlRcv.sh $KnBasHP$SrvGP/bin/WkFloSqlRcv.sh
 ln $SrvLib/fifoRcvLib-01.sh $KnBasHP$SrvGP/lib/fifoRcvLib-01.sh
 ln $SrvLib/MariaDB/GX/wkFlo/cmd/*  $KnBasHP$SrvGP/lib/wkFlo/cmd/
