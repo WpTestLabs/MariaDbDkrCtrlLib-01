@@ -109,7 +109,7 @@ DbDmp () {  log "SqlCli.DbDmp() >> Start: tkn: $WkFloTkn  args: $@"
   . $KnBasHP/guestEnv.sh;    
   echo "sql.WkFlo.DbDmp() - SrvWkFlo: $SrvWkFlo  SqlSrvID: $SqlSrvID"
   mkdir -p $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/{G,B,w8}
-  ln -sf $SrvWhFlo/tkn/$WkFloTkn $SrvWkFlo/$SqlSrvID/WfDbDmpCB/w8
+  ln -sf $SrvWkFlo/tkn/$WkFloTkn $SrvWkFlo/$SqlSrvID/WfDbDmpCB/w8
   
   log "Msg 2 SQL >> WkFlo $WkFloTkn DbDmp $@"
   msg "WkFlo $WkFloTkn DbDmp $@"
