@@ -94,11 +94,19 @@ WkFlo () { On;  export WkFloTkn=$1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd
   
 #  mkdir -p $SrvWkFlo/{svrCB,tkn}  # @@@@@@@@ ==> ___??
 #  echo "log \"[WfRcv] Loaded token env: $WkFloTkn \"" > $SrvWkFlo/tkn/$WkFloTkn # @@@@@@ 
+
+  echo "Loading $KnBasHP/guestEnv.sh..." 
+  . $KnBasHP/guestEnv.sh;    
+  ln -sf $KnBasHP/guestEnv.sh  $SrvWkFlo/svrByID/$SqlSrvID
+  echo "sql.WkFlo.DbDmp() - SrvWkFlo: $SrvWkFlo  SqlSrvID: $SqlSrvID"
+  mkdir -p $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/{G,B,w8}
   
+
 
   cmd=${WfCmdMP[$cmd0]};  [[ -n "$cmd" ]] && $cmd "$@" && return;
   log "SqlCli.wkFlo() >> $cmd0 is NOT an Internal Command!"
   if [[ -e $cmdGP/$cmd0 ]]; then
+    ln -sf $SrvWkFlo/tkn/$WkFloTkn $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/w8
     $cmdGP/$cmd0 "$@";  xc=$?; 
 	log "SqlCli.wkFlo() >> $cmd0 - Exit Code: $xc"
   else 
@@ -106,12 +114,6 @@ WkFlo () { On;  export WkFloTkn=$1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd
   fi
 }
 DbDmp () {  log "SqlCli.DbDmp() >> Start: tkn: $WkFloTkn  args: $@"
-  echo "Loading $KnBasHP/guestEnv.sh..." 
-  . $KnBasHP/guestEnv.sh;    
-  echo "sql.WkFlo.DbDmp() - SrvWkFlo: $SrvWkFlo  SqlSrvID: $SqlSrvID"
-  mkdir -p $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/{G,B,w8}
-  ln -sf $SrvWkFlo/tkn/$WkFloTkn $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/w8
-  
   log "Msg 2 SQL >> WkFlo $WkFloTkn DbDmp $@"
   msg "WkFlo $WkFloTkn DbDmp $@"
   log "SqlCli.DbDmp() >> End - msg sent."
