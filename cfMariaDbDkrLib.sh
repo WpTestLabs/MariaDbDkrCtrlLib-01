@@ -92,8 +92,8 @@ declare -A WfCmdMP
 
 WkFlo () { On;  export WkFloTkn=$1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd; shift 2;
   
-  mkdir -p $SrvWkFlo/{svrCB,tkn}  # @@@@@@@@ ==> ___??
-  echo "log \"[WfRcv] Loaded token env: $WkFloTkn \"" > $SrvWkFlo/tkn/$WkFloTkn # @@@@@@ 
+#  mkdir -p $SrvWkFlo/{svrCB,tkn}  # @@@@@@@@ ==> ___??
+#  echo "log \"[WfRcv] Loaded token env: $WkFloTkn \"" > $SrvWkFlo/tkn/$WkFloTkn # @@@@@@ 
   
 
   cmd=${WfCmdMP[$cmd0]};  [[ -n "$cmd" ]] && $cmd "$@" && return;
