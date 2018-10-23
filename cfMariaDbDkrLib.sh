@@ -103,7 +103,11 @@ WkFlo () { On;  export WkFloTkn=$1; local cmdGP=$KnBasHP/lib/wkFlo  cmd0=$2  cmd
   
 
 
-  cmd=${WfCmdMP[$cmd0]};  [[ -n "$cmd" ]] && $cmd "$@" && return;
+  cmd=${WfCmdMP[$cmd0]}; 
+  if [[ -n "$cmd" ]]; then
+    ln -sf $SrvWkFlo/tkn/$WkFloTkn $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/w8
+    $cmd "$@" && return;
+  fi
   log "SqlCli.wkFlo() >> $cmd0 is NOT an Internal Command!"
   if [[ -e $cmdGP/$cmd0 ]]; then
     ln -sf $SrvWkFlo/tkn/$WkFloTkn $SrvWkFlo/svrCB/$SqlSrvID/WfDbDmpCB/w8
