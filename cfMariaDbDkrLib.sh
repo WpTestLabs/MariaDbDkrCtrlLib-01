@@ -58,11 +58,9 @@ xDbDmp () { echo "[Hst] cfMariaDbDkrLib.DbDmp - RunGP: $RunGP  (1)";
 #    if [[ ! -e "$KnBasHP$KnWkFloFifoGPFN" ]]; then
 #        mkfifo $KnBasHP$KnWkFloFifoGPFN
 #    fi
-    echo "A: $@" 
-    echo "$@" > $KnBasHP$KnWkFloFifoGPFN
+    echo "A: $@" ;    echo "$@" > $KnBasHP$KnWkFloFifoGPFN
     unset $@
-    echo "Z: $@" 
-    echo "End: DbDmp()"
+    echo "Z: $@" ;    echo "End: DbDmp()"
 }
 msg () { On; 
     . $KnBasHP/guestEnv.sh;  echo "[Hst] cfMariaDbDkrLib.msg() - RunGP: $RunGP";
