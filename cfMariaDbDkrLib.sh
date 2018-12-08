@@ -5,7 +5,8 @@ databases () { docker exec -it $CID mysql -uroot -e 'SHOW DATABASES;'; }
 databases-ss () { docker exec -it $CID mysql -uroot -ss -e 'SHOW DATABASES;'; }
 engines () { docker exec -it $CID mysql -uroot -e 'SHOW ENGINES;'; }
 plugins () { docker exec -it $CID mysql -uroot -e 'SHOW PLUGINS;'; }
-users () { docker exec -it $CID mysql -uroot -e 'SELECT User,Host,Password FROM mysql.user;'; }
+users () { docker exec -it $CID mysql -uroot \
+		-e 'SELECT User,Host,Password FROM mysql.user;'; }
 _ping () { docker exec -it $CID mysqladmin ping; }
 Ping () {	echo "Kan: $FQKanRtN  -- CID: $CID  >>>>>  `_ping`"; }
 ping () { Ping; }
