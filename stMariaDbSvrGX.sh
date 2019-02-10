@@ -43,9 +43,15 @@ else
 	# check if id chown needed @@@@@@@@@@@@@ (are files owned by wrong ID # ??)
 fi
 msg "TL [SQL] Starting MariaDB Service (this is final mesg) <<"
+
+sed -i 's/^[^#]*skip-networking/#&/g' /etc/my.cnf.d/mariadb-server.cnf
+sed -i 's/^ *# *bind-address *= *[^ ]*/bind-address=127.0.0.1/g' /etc/my.cnf.d/mariadb-server.cnf
+cat /etc/my.cnf.d/mariadb-server.cnf
+
 #  @@@ w/ "include in /etc/my.cnf,  --defaults-extra-file should not be needed!
 # vvv defaults-extra has No Host Resolve !!
 #  heartBeat &
 $SrvGP/bin/WkFloSqlRcv.sh &
 $SrvGP/sqlHeartBeatGX.sh &
-exec su-exec $MdbUsr mysqld --skip_networking=0  --defaults-extra-file=$SrvGP/my.cnf
+#exec su-exec $MdbUsr mysqld --skip_networking=0  --defaults-extra-file=$SrvGP/my.cnf
+exec su-exec $MdbUsr mysqld  --defaults-extra-file=$SrvGP/my.cnf
