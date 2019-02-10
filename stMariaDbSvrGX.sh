@@ -48,4 +48,4 @@ msg "TL [SQL] Starting MariaDB Service (this is final mesg) <<"
 #  heartBeat &
 $SrvGP/bin/WkFloSqlRcv.sh &
 $SrvGP/sqlHeartBeatGX.sh &
-exec su-exec $MdbUsr mysqld --defaults-extra-file=$SrvGP/my.cnf
+exec su-exec $MdbUsr mysqld --skip_networking=0  --defaults-extra-file=$SrvGP/my.cnf
