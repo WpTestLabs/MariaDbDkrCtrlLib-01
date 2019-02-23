@@ -36,5 +36,6 @@ export FQKnRtN=\${KnGrpN}._.\${KnRtN}
 export DkrRtLbls=" --label stk=\$SvrStkN  --label grp=\$KnGrpN --label kanT=\$KnPkgN "
     #qq export DkrVolGrp=" -v $KnEtcHP/:/etc/$KnPkgN/:ro  -v $KnLogHP/:/var/log/$KnPkgN  
 export DkrVolGrp=" -v \$KnBasHP/srv:/srv "
+# @@@@ export GoBinPth=/srv0/WkSp/go/bin   <<<< BEFORE running /Cmd/mkSvr.sh @@@@@@@@@@
 [[ -z "$GoBinPth" ]] || DkrVolGrp="\$DkrVolGrp  -v $GoBinPth:/bin/go"
 EOF
